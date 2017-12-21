@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\store_graph_upload\Plugin\Deriver;
+namespace Drupal\custom_graphql_file_upload\Plugin\Deriver;
 
 use Drupal\Component\Plugin\Derivative\DeriverBase;
 use Drupal\Core\Entity\EntityTypeBundleInfoInterface;

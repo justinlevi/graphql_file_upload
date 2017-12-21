@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\store_graph_upload\Plugin\GraphQL\Scalars;
+namespace Drupal\custom_graphql_file_upload\Plugin\GraphQL\Scalars;
 
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\graphql\Plugin\GraphQL\Scalars\GraphQLString;
@@ -27,7 +27,10 @@ class FileUpload extends GraphQLString implements ContainerFactoryPluginInterfac
    */
   public function __construct(array $configuration, $pluginId, $pluginDefinition, RequestStack $request_stack) {
     $this->requestStack = $request_stack;
-    $this->constructPlugin($configuration, $pluginId, $pluginDefinition);
+    $this->configuration = $configuration;
+    $this->pluginId = $pluginId;
+    $this->pluginDefinition = $pluginDefinition;
+//    $this->constructPlugin($configuration, $pluginId, $pluginDefinition);
   }
 
   /**

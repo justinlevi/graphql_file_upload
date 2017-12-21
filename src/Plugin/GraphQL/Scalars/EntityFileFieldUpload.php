@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\store_graph_upload\Plugin\GraphQL\Scalars;
+namespace Drupal\custom_graphql_file_upload\Plugin\GraphQL\Scalars;
 
 
 /**
