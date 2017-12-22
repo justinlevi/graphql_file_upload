@@ -32,9 +32,12 @@ class UploadFile extends CreateEntityBase {
    */
   protected function extractEntityInput(array $inputArgs, InputObjectType $inputType, ResolveInfo $info) {
     return [
-      'filename' => $inputArgs['filename'],
       'file' => $inputArgs['file']
     ];
   }
+
+//  public function resolve($value, array $args, ResolveInfo $info) {
+//    return $args['input']['file'];
+//  }
 
 }

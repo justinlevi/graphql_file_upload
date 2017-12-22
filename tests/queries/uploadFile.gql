@@ -1,0 +1,9 @@
+mutation($file: FileInput!) {
+  uploadFile(input: $file){
+    entity{
+      ...on FileFile {
+        url
+      }
+    }
+  }
+}
