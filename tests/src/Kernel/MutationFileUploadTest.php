@@ -2,12 +2,16 @@
 
 namespace Drupal\Tests\custom_graphql_file_upload\Kernel;
 
-use Drupal\Core\Entity\EntityFieldManager;
 use Drupal\Tests\graphql\Kernel\GraphQLFileTestBase;
-use Drupal\Core\Entity\ContentEntityType;
-use Drupal\Tests\user\Traits\UserCreationTrait;
+
 use Drupal\user\Entity\Role;
 use Drupal\user\RoleInterface;
+
+// use Drupal\Tests\user\Traits\UserCreationTrait;
+use Drupal\Tests\TestFileCreationTrait;
+
+use Drupal\media_entity\Entity\Media;
+use Drupal\media_entity\Entity\MediaBundle;
 
 
 /**
@@ -17,30 +21,41 @@ use Drupal\user\RoleInterface;
  */
 class MutationFileUploadTest extends GraphQLFileTestBase {
 
-  use UserCreationTrait {
-    createRole as drupalCreateRole;
-    createUser as drupalCreateUser;
+//  use UserCreationTrait {
+//    createRole as drupalCreateRole;
+//    createUser as drupalCreateUser;
+//  }
+
+  use TestFileCreationTrait {
+    getTestFiles as drupalGetTestFiles;
   }
 
   /**
    * {@inheritdoc}
    */
   public static $modules = [
-    'system',
-    'path',
-    'user',
-    'file',
-    'file_test',
-    'node',
-    'field',
-    'media_entity',
     'entity',
     'image',
+    'user',
+    'field',
+    'system',
+    'file',
     'graphql',
     'graphql_core',
     'custom_graphql_file_upload',
-    'custom_graphql_field'
+//    'custom_graphql_field',
+    'simpletest',
+//    'media',
+//    'media_entity',
+//    'media_entity_image',
   ];
+
+  /**
+   * The test media bundle.
+   *
+   * @var \Drupal\media_entity\MediaBundleInterface
+   */
+  protected $testBundle;
 
 
   /**
@@ -49,20 +64,19 @@ class MutationFileUploadTest extends GraphQLFileTestBase {
   protected function setUp() {
     parent::setUp();
 
-    $this->installConfig('system');
-    $this->installConfig('graphql');
-    $this->installConfig('user');
     $this->installEntitySchema('user');
-
+    $this->installEntitySchema('file');
+    $this->installSchema('file', 'file_usage');
+//    $this->installEntitySchema('media');
+    $this->installConfig(['field', 'system', 'image', 'file']);
 
     Role::load(RoleInterface::AUTHENTICATED_ID)
       ->grantPermission('execute graphql requests')
       ->grantPermission('create media')
       ->grantPermission('view media')
       ->grantPermission('access content')
-      ->grantPermission('bypass node access')
-      ->grantPermission('create url aliases')
       ->save();
+
   }
 
   /**
@@ -88,11 +102,26 @@ class MutationFileUploadTest extends GraphQLFileTestBase {
    */
   public function testMutationFileUploadQuery() {
 
-    $path = $this->gettestsDirectory() . '/bob_ross.jpg';
-    $type = pathinfo($path, PATHINFO_EXTENSION);
-    $data = file_get_contents($path);
+//    $path = $this->gettestsDirectory() . '/bob_ross.jpg';
+//    $type = pathinfo($path, PATHINFO_EXTENSION);
+//    $data = file_get_contents($path);
 
-    $result = $this->executeQueryFile('uploadFile.gql', ['file' => ['file' => $data]]);
+    $image = current($this->drupalGetTestFiles('image'));
+
+//    /** @var \Drupal\media_entity\MediaBundleInterface $bundle */
+//    $bundle = \Drupal::entityTypeManager()
+//      ->getStorage('media_bundle')
+//      ->load($this->configuration['media_bundle']);
+//
+//    $images = [];
+
+
+    // STEP 1 : JUST FOCUS ON ADDING AN IMAGE
+
+
+
+
+    $result = $this->executeQueryFile('uploadFile.gql', ['file' => ['file' => $image]]);
     $this->assertEquals("HELLO", $result['data']['uploadFile']);
   }
 

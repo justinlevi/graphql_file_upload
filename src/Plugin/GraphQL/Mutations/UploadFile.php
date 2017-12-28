@@ -14,11 +14,11 @@ use Youshido\GraphQL\Execution\ResolveInfo;
  *
  * @GraphQLMutation(
  *   id = "upload_file",
- *   entity_type = "file",
- *   entity_bundle = "media",
+ *   entity_type = "media",
+ *   entity_bundle = "image",
  *   secure = true,
  *   name = "uploadFile",
- *   type = "EntityCrudOutput",
+ *   type = "String",
  *   arguments = {
  *     "input" = "FileInput"
  *   }
@@ -40,6 +40,9 @@ class UploadFile extends CreateEntityBase {
    * {@inheritdoc}
    */
   public function resolve($value, array $args, ResolveInfo $info) {
+
+    return $args['input']['file'];
+
     $entityTypeId = $this->pluginDefinition['entity_type'];
     $bundleName = $this->pluginDefinition['entity_bundle'];
     $bundleKey = $this->entityTypeManager->getDefinition($entityTypeId)->getKey('bundle');
