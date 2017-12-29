@@ -18,7 +18,7 @@ use Youshido\GraphQL\Execution\ResolveInfo;
  *   entity_bundle = "image",
  *   secure = true,
  *   name = "uploadFile",
- *   type = "String",
+ *   type = "EntityCrudOutput",
  *   arguments = {
  *     "input" = "FileInput"
  *   }
@@ -41,7 +41,9 @@ class UploadFile extends CreateEntityBase {
    */
   public function resolve($value, array $args, ResolveInfo $info) {
 
+
     return $args['input']['file'];
+
 
     $entityTypeId = $this->pluginDefinition['entity_type'];
     $bundleName = $this->pluginDefinition['entity_bundle'];
