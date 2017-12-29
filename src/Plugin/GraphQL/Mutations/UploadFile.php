@@ -42,7 +42,7 @@ class UploadFile extends CreateEntityBase {
   public function resolve($value, array $args, ResolveInfo $info) {
 
 
-    return $args['input']['file'];
+    //return $args['input']['file'];
 
 
     $entityTypeId = $this->pluginDefinition['entity_type'];
