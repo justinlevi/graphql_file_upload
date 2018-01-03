@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\custom_graphql_file_upload\Plugin\GraphQL\Scalars;
+namespace Drupal\graphql_file_upload\Plugin\GraphQL\Scalars;
 
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\graphql\Plugin\GraphQL\Scalars\GraphQLString;

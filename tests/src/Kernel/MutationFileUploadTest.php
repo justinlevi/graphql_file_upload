@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\Tests\custom_graphql_file_upload\Kernel;
+namespace Drupal\Tests\graphql_file_upload\Kernel;
 
 use Drupal\Tests\graphql\Kernel\GraphQLFileTestBase;
 
@@ -42,7 +42,7 @@ class MutationFileUploadTest extends GraphQLFileTestBase {
     'file',
     'graphql',
     'graphql_core',
-    'custom_graphql_file_upload',
+    'graphql_file_upload',
 //    'custom_graphql_field',
     'simpletest',
 //    'media',

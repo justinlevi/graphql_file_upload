@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\custom_graphql_file_upload\Plugin\GraphQL\InputTypes;
+namespace Drupal\graphql_file_upload\Plugin\GraphQL\InputTypes;
 
 use Drupal\graphql\Plugin\GraphQL\InputTypes\InputTypePluginBase;
 
@@ -11,7 +11,7 @@ use Drupal\graphql\Plugin\GraphQL\InputTypes\InputTypePluginBase;
  *   id = "file_input",
  *   name = "FileInput",
  *   fields = {
- *     "file" = "FileUpload"
+ *     "filename" = "String"
  *   }
  * )
  */

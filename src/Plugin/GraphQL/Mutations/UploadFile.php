@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\custom_graphql_file_upload\Plugin\GraphQL\Mutations;
+namespace Drupal\graphql_file_upload\Plugin\GraphQL\Mutations;
 
 use Drupal\graphql\Annotation\GraphQLMutation;
 use Drupal\graphql\GraphQL\Type\InputObjectType;
@@ -32,7 +32,7 @@ class UploadFile extends CreateEntityBase {
    */
   protected function extractEntityInput(array $inputArgs, InputObjectType $inputType, ResolveInfo $info) {
     return [
-      'file' => $inputArgs['file']
+      'filename' => $inputArgs['filename']
     ];
   }
 
@@ -42,7 +42,6 @@ class UploadFile extends CreateEntityBase {
   public function resolve($value, array $args, ResolveInfo $info) {
 
 
-    //return $args['input']['file'];
 
 
     $entityTypeId = $this->pluginDefinition['entity_type'];

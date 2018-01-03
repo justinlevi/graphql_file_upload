@@ -1,9 +1,7 @@
-# graphql_custom_file_upload
+# graphql_file_upload
 
 
-A Custom GraphQL File Upload Module
-
-WIP - CURRENTLY BROKEN :(
+A GraphQL File Upload Module
 
 
 gql 
@@ -19,11 +17,15 @@ mutation($file: FileInput!) {
 }
 ```
 
+currently works with `multipart/form-date` set on the request body sent as a POST. 
+
+Works out of the box with `apollo-upload-client`
+
 
 The variable should look like this: 
 
 ```$xslt
 {
-  "file": {"file": __BINARY-FILE-DATA__}
+  "file": {"filename": String}
 }
 ```

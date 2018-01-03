@@ -1,4 +1,4 @@
-name: Custom GraphQL File Upload
+name: GraphQL File Upload
 type: module
 description: A Custom GraphQL File Upload Field Plugin
 core: 8.x
