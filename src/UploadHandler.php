@@ -126,7 +126,7 @@ class UploadHandler implements UploadHandlerInterface {
     }
 
     // Open temp file.
-    $tmp = $this->tmpUploadScheme . '://' . $this->getFilename($file);
+    $tmp = 'temporary://' . $this->getFilename($file);
     if (!($out = fopen($tmp, $this->request->request->get('chunk', 0) ? 'ab' : 'wb'))) {
       throw new UploadException(UploadException::OUTPUT_ERROR);
     }
